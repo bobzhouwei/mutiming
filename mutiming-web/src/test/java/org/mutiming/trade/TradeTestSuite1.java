@@ -17,7 +17,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TradeTest {
+public class TradeTestSuite1 {
     @Autowired
     private TradeService tradeService;
 

@@ -75,7 +75,7 @@ public class TradeRepositoryImpl implements TradeRepository {
             if (!watchPriceInfoOptional.isPresent()) {
                 // Returns failure code and message if no price for the specified watch Id
                 return ResponseUtility.fail(
-                        ResponseCode.NO_WATCH_PRICE_LIST.getCode(), ResponseCode.NO_WATCH_PRICE.getMessage() + watchId);
+                        ResponseCode.NO_WATCH_PRICE.getCode(), ResponseCode.NO_WATCH_PRICE.getMessage() + watchId);
             }
 
             // get the price and discount info
