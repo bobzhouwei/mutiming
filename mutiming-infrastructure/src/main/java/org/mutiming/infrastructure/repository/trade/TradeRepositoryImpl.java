@@ -1,0 +1,105 @@
+package org.mutiming.infrastructure.repository.trade;
+
+import lombok.extern.slf4j.Slf4j;
+import org.mutiming.common.config.WatchItemConfig;
+import org.mutiming.common.utils.BigDecimalUtil;
+import org.mutiming.entity.domainobject.config.ItemPriceInfo;
+import org.mutiming.entity.valueobject.base.Response;
+import org.mutiming.entity.valueobject.base.ResponseCode;
+import org.mutiming.entity.valueobject.base.ResponseUtility;
+import org.mutiming.entity.valueobject.trade.checkout.CheckOutResult;
+import org.mutiming.store.domain.repository.TradeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+@Slf4j
+@Component
+public class TradeRepositoryImpl implements TradeRepository {
+    private final WatchItemConfig watchItemConfig;
+
+    @Autowired
+    private TradeRepositoryImpl(WatchItemConfig watchItemConfig) {
+        this.watchItemConfig = watchItemConfig;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public Response<CheckOutResult> checkout(List<String> request) {
+        // Initialize the response
+        CheckOutResult checkOutResult = new CheckOutResult();
+        checkOutResult.setPrice(BigDecimal.ZERO);
+
+        // Check for input parameters
+        if (CollectionUtils.isEmpty(request)) {
+            return ResponseUtility.success(checkOutResult);
+        }
+
+        // Get the price list for all watches
+        List<ItemPriceInfo> itemPriceList = watchItemConfig.getWatchPriceListConfig();
+        if (CollectionUtils.isEmpty(itemPriceList)) {
+            return ResponseUtility.fail(ResponseCode.NO_WATCH_PRICE_LIST);
+        }
+
+        // Put the purchased watch Ids to map and count the number for each category
+        Map<String, BigDecimal> itemMap = new HashMap<>(itemPriceList.size());
+        for (String itemId : request) {
+            if (StringUtils.isEmpty(itemId) || StringUtils.isEmpty(itemId.trim())) {
+                continue;
+            }
+            if (itemMap.containsKey(itemId)) {
+                itemMap.put(itemId, itemMap.get(itemId).add(BigDecimal.ONE));
+            } else {
+                itemMap.put(itemId, BigDecimal.ONE);
+            }
+        }
+
+        // Initialize the local variables for total price and total discount
+        BigDecimal totalPrice = BigDecimal.ZERO;
+        BigDecimal totalDiscount = BigDecimal.ZERO;
+
+        for (Map.Entry<String, BigDecimal> itemEntry : itemMap.entrySet()) {
+            String watchId = itemEntry.getKey();
+            BigDecimal purchasedQuantity = itemEntry.getValue();
+
+            Optional<ItemPriceInfo> watchPriceInfoOptional =
+                    itemPriceList.stream().filter(itemPrice -> watchId.equals(itemPrice.getId())).findFirst();
+            if (!watchPriceInfoOptional.isPresent()) {
+                // Returns failure code and message if no price for the specified watch Id
+                return ResponseUtility.fail(
+                        ResponseCode.NO_WATCH_PRICE_LIST.getCode(), ResponseCode.NO_WATCH_PRICE.getMessage() + watchId);
+            }
+
+            // get the price and discount info
+            ItemPriceInfo watchPriceInfo = watchPriceInfoOptional.get();
+            BigDecimal unitPrice = watchPriceInfo.getUnitPrice();
+            BigDecimal discountPackage = watchPriceInfo.getDiscountPackage();
+            BigDecimal discountPrice = watchPriceInfo.getDiscountPrice();
+
+            // calculate the price and add to the total price
+            totalPrice = unitPrice.multiply(purchasedQuantity).add(totalPrice);
+
+            if (discountPackage != null && discountPackage.compareTo(BigDecimal.ZERO) > 0
+                    && discountPrice != null && discountPrice.compareTo(BigDecimal.ZERO) > 0) {
+                // calculate the discount and add to the total discount
+                BigDecimal discountQuantity = purchasedQuantity.divide(discountPackage, 0, RoundingMode.DOWN);
+                totalDiscount = discountQuantity.multiply(discountPrice).add(totalDiscount);
+            }
+        }
+
+        // calculate the actual price: totalPrice - totalDiscount
+        checkOutResult.setPrice(totalPrice.subtract(totalDiscount));
+        // prevent the negative price
+        checkOutResult.setPrice(BigDecimalUtil.max(checkOutResult.getPrice(), BigDecimal.ZERO));
+
+        return ResponseUtility.success(checkOutResult);
+    }
+}

@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+logging:
+  path: d:/
+  file: d:/MuTiming.log
+
+priceInfo:
+  watchPriceList: "[{\"id\":\"001\",\"name\":\"Rolex \",\"unitPrice\":100,\"discountPackage\":3,\"discountPrice\":100},{\"id\":\"002\",\"name\":\"Michael Kors\",\"unitPrice\":80,\"discountPackage\":2,\"discountPrice\":40},{\"id\":\"003\",\"name\":\"Swatch\",\"unitPrice\":50,\"discountPackage\":0,\"discountPrice\":0},{\"id\":\"004\",\"name\":\"Casio\",\"unitPrice\":30,\"discountPackage\":0,\"discountPrice\":0}]"
