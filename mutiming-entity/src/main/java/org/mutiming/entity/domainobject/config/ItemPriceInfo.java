@@ -7,6 +7,11 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
+/**
+ * ItemPriceInfo model
+ *
+ * @author wei.zhou
+ */
 @Getter
 @Setter
 public class ItemPriceInfo {

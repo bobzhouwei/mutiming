@@ -5,6 +5,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 
+/**
+ * ResponseHeader model
+ * @author Wei.Zhou
+ */
 @Data
 @Builder
 public class ResponseHeader {

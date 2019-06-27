@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Trade Service
+ *
+ * @author wei.zhou
+ */
 @Service
 public class TradeService {
     @Autowired

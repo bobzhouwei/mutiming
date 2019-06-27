@@ -4,6 +4,11 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * Customize the request filter
+ *
+ * @author Wei.Zhou
+ */
 public class RequestFilter implements Filter {
     @Override
     public void destroy() {
@@ -16,6 +21,8 @@ public class RequestFilter implements Filter {
         if (request instanceof HttpServletRequest) {
             requestWrapper = new RequestWrapper((HttpServletRequest) request);
         }
+
+        // Putting the stream back to the new request. and passing the new request by chain.doFilter
         if (requestWrapper == null) {
             chain.doFilter(request, response);
         } else {

@@ -1,7 +1,9 @@
 package org.mutiming.configuration.log;
 
 /**
- * @author: Wei.Zhou
+ * Response model for customized log
+ *
+ * @author Wei.Zhou
  */
 public class ResponseModel {
     private static final ThreadLocal<ResponseModel> RESPONSE_MODEL = new ThreadLocal<>();

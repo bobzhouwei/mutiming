@@ -16,7 +16,8 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * @author: Wei.Zhou
+ * Log interceptor: get the request body at preHandle phase and write the log at afterCompletion phase
+ * @author Wei.Zhou
  */
 @Component
 @Slf4j

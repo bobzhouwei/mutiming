@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * Trade Controller
+ *
+ * @author wei.zhou on 2019/6/27
+ */
 @RestController
 @RequestMapping("/")
 @Api(description = "Trade Controller")

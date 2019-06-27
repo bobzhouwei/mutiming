@@ -5,6 +5,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
+/**
+ * Common response model
+ *
+ * @author wei.zhou
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Response<T> {
     @ApiModelProperty("Response head")

@@ -9,6 +9,11 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * Web application entry
+ *
+ * @author Wei.Zhou
+ */
 @EnableSwagger2
 @SpringBootApplication(scanBasePackages = "org.mutiming")
 public class MuTimingWebApplication extends SpringBootServletInitializer {

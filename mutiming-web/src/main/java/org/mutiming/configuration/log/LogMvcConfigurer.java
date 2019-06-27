@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
- * @author: Wei.Zhou
+ * @author Wei.Zhou
  */
 @SpringBootConfiguration
 public class LogMvcConfigurer implements WebMvcConfigurer {

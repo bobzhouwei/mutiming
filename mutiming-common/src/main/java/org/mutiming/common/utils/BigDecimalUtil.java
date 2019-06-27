@@ -3,8 +3,9 @@ package org.mutiming.common.utils;
 import java.math.BigDecimal;
 
 /**
- * @author: Wei.Zhou on 2019/6/26
  * Utilities for BigDecimal
+ *
+ * @author Wei.Zhou on 2019/6/26
  */
 public class BigDecimalUtil {
     /**

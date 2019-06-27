@@ -1,5 +1,9 @@
 package org.mutiming.entity.valueobject.base;
 
+/**
+ * Response utility
+ * @author Wei.Zhou
+ */
 public class ResponseUtility {
     private static final String DEFAULT_SUCCESS_MESSAGE = "SUCCESS";
 

@@ -5,6 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * PriceRepository interface
+ *
+ * @author wei.zhou
+ */
 @Repository
 public interface PriceRepository {
     /**

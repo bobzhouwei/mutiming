@@ -1,11 +1,9 @@
 package org.mutiming.entity.valueobject.base;
 
 /**
- * @author Wei.Zhou
- */
-
-/**
  * The Centralized Response Code Definition
+ *
+ * @author Wei.Zhou
  */
 public enum ResponseCode {
     SUCCESS(200, "Success"),

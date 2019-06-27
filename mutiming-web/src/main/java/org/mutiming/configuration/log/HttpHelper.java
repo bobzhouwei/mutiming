@@ -9,8 +9,20 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
+/**
+ * Helper class for http
+ *
+ * @author Wei.Zhou
+ */
 @Slf4j
 class HttpHelper {
+    /**
+     * Get request body string from HttpServletRequest
+     *
+     * @param request
+     * @return
+     * @throws IOException
+     */
     static String getBodyString(HttpServletRequest request) throws IOException {
         StringBuilder sb = new StringBuilder();
         try (InputStream inputStream = request.getInputStream();

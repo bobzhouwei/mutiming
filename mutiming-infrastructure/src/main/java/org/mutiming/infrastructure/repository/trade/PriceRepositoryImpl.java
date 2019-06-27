@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of PriceRepository interfaces
+ *
+ * @author wei.zhou
+ */
 @Slf4j
 @Component
 public class PriceRepositoryImpl implements PriceRepository {

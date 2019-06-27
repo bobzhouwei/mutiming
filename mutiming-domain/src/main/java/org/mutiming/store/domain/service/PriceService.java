@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Price Service
+ * @author wei.zhou
+ */
 @Service
 public class PriceService {
     @Autowired

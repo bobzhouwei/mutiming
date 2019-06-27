@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
- * @author: Wei.Zhou
+ * @author Wei.Zhou
  */
 @ControllerAdvice
 @Slf4j
@@ -19,7 +19,7 @@ public class LogResponseBodyAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter arg0, Class<? extends HttpMessageConverter<?>> arg1) {
-        //Do Nothing.
+        // Do nothing.
         return true;
     }
 

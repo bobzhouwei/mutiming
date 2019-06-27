@@ -21,6 +21,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Implementation of TradeRepository interfaces
+ *
+ * @author wei.zhou
+ */
 @Slf4j
 @Component
 public class TradeRepositoryImpl implements TradeRepository {

@@ -6,6 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * TradeRepository interface
+ *
+ * @author wei.zhou
+ */
 @Repository
 public interface TradeRepository {
     /**
