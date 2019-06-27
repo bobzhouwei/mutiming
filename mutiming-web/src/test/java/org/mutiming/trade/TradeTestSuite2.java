@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -45,6 +46,24 @@ public class TradeTestSuite2 {
     public void blank_id_total_0() throws Exception {
         List<String> request = JSON.parseArray(TradeTestData.BLANK_ID_TOTAL_0, String.class);
         Response<CheckOutResult> response = tradeService.checkout(request);
+        Assert.assertNotNull(response);
+        Assert.assertNotNull(response.getData());
+        Assert.assertEquals(ResponseCode.SUCCESS.getCode(), response.getCode());
+        Assert.assertEquals(BigDecimal.valueOf(0), response.getData().getPrice());
+    }
+
+    @Test
+    public void test_null_input() throws Exception {
+        Response<CheckOutResult> response = tradeService.checkout(null);
+        Assert.assertNotNull(response);
+        Assert.assertNotNull(response.getData());
+        Assert.assertEquals(ResponseCode.SUCCESS.getCode(), response.getCode());
+        Assert.assertEquals(BigDecimal.valueOf(0), response.getData().getPrice());
+    }
+
+    @Test
+    public void test_empty_input() throws Exception {
+        Response<CheckOutResult> response = tradeService.checkout(new ArrayList<>());
         Assert.assertNotNull(response);
         Assert.assertNotNull(response.getData());
         Assert.assertEquals(ResponseCode.SUCCESS.getCode(), response.getCode());

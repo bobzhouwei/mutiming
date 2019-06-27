@@ -1,7 +1,6 @@
 package org.mutiming.infrastructure.repository.trade;
 
 import lombok.extern.slf4j.Slf4j;
-import org.mutiming.common.config.WatchItemConfig;
 import org.mutiming.common.utils.BigDecimalUtil;
 import org.mutiming.entity.domainobject.config.ItemPriceInfo;
 import org.mutiming.entity.valueobject.base.Response;
@@ -9,6 +8,7 @@ import org.mutiming.entity.valueobject.base.ResponseCode;
 import org.mutiming.entity.valueobject.base.ResponseUtility;
 import org.mutiming.entity.valueobject.trade.checkout.CheckOutResult;
 import org.mutiming.store.domain.repository.TradeRepository;
+import org.mutiming.store.domain.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -24,12 +24,8 @@ import java.util.Optional;
 @Slf4j
 @Component
 public class TradeRepositoryImpl implements TradeRepository {
-    private final WatchItemConfig watchItemConfig;
-
     @Autowired
-    private TradeRepositoryImpl(WatchItemConfig watchItemConfig) {
-        this.watchItemConfig = watchItemConfig;
-    }
+    private PriceService priceService;
 
     @Override
     @SuppressWarnings("unchecked")
@@ -44,7 +40,7 @@ public class TradeRepositoryImpl implements TradeRepository {
         }
 
         // Get the price list for all watches
-        List<ItemPriceInfo> itemPriceList = watchItemConfig.getWatchPriceListConfig();
+        List<ItemPriceInfo> itemPriceList = priceService.getWatchPriceList();
         if (CollectionUtils.isEmpty(itemPriceList)) {
             return ResponseUtility.fail(ResponseCode.NO_WATCH_PRICE_LIST);
         }
