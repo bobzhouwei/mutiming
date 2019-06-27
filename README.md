@@ -5,7 +5,7 @@ This service provides thr APIs for supporting MuTiming Online Trading.
 
 ## Main functions
 - Checkout
-- ... more functions to be added soon
+- ... more functions to be added later
 
 ## Quick Start
 #### Step 1: Download the source
@@ -13,7 +13,7 @@ You can download the source zip or clone it from the github (https://github.com/
 
 #### Step 2: Package it
 - Run "mvn clean package" 
-(Make sure you have the maven installed. If not, download maven via http://maven.apache.org/download.cgi 
+(Make sure you have the maven installed. If not, download maven via (http://maven.apache.org/download.cgi) 
 and follow the instructions to make sure maven be installed properly.)
 - After that, you can get the "mutiming-web.jar" under "mutiming-web\target" folder
 
@@ -57,6 +57,9 @@ You can see the result at the Response boy.
 - I modified the response body a little compare to the Coding challenger, I expanded it with a response head with code and message. The main purpose is to be able to show more information via the response.
 - If the watch price list is empty or something wrong, the response returns error code and error messages to figure out the issue, not just returns ZERO.
 - If any of the purchasing watch Id is not listed in the watch sale list, the response will also returns error code and error messages. I think at this situation, returns error code and error messages is reasonable for a e-trading system. The trade should not be proceeded if an item has no price, instead of just skip or ignore it which could cause major issues.
+- I made a max item quantity check, currently set to 100000000 which should be a reasonable size for the business, to prevent the overflow and response issues. 
 #### Further improvements
-- Put the price list into database to make it easy to maintenance. Then load the list into cache (like Redis). The cache should be updated regularly or right after any changes in to database.
+- Put the configuration (like the price list, and max item quantity) to an online configuration platform (like Apollo, Nacos, etc.) to make it easy to be maintenance and be updated.
+- Put the price list onto a database is another way to enable it persistence and able to interact with other module/system. A cache (like Redis) need to be applied to handle the query of price list. The cache should be updated regularly or right after any changes in to database.
+- As a trial project, I did not care much about the security and rate limit. To be an formal e-commerce API, need to introduce the authentication check, gateway, load balance, rate limit, system monitor and alert, etc. To make it robust. 
 - Current the implement of discount strategy is weak, which can just handle one kind of discount strategy. Further improvement can separate it as a discount module to be able to handle more kinds of discount strategies. 

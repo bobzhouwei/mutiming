@@ -24,6 +24,8 @@ import java.util.Optional;
 @Slf4j
 @Component
 public class TradeRepositoryImpl implements TradeRepository {
+    private static final int MAX_ITEM_QUANTITY = 100000000;
+
     @Autowired
     private PriceService priceService;
 
@@ -38,6 +40,12 @@ public class TradeRepositoryImpl implements TradeRepository {
         if (CollectionUtils.isEmpty(request)) {
             return ResponseUtility.success(checkOutResult);
         }
+
+        if (request.size() > MAX_ITEM_QUANTITY) {
+            return ResponseUtility.fail(
+                    ResponseCode.EXCEED_MAX_SIZE.getCode(), ResponseCode.EXCEED_MAX_SIZE.getMessage() + MAX_ITEM_QUANTITY);
+        }
+
 
         // Get the price list for all watches
         List<ItemPriceInfo> itemPriceList = priceService.getWatchPriceList();

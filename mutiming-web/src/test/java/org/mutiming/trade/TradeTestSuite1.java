@@ -15,6 +15,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Trade checkout service test suite 1 - positive cases to check the correctness of the price calculation
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TradeTestSuite1 {
@@ -109,5 +112,45 @@ public class TradeTestSuite1 {
         Assert.assertNotNull(response.getData());
         Assert.assertEquals(ResponseCode.SUCCESS.getCode(), response.getCode());
         Assert.assertEquals(BigDecimal.valueOf(320), response.getData().getPrice());
+    }
+
+    @Test
+    public void watch_003_1_for_50() throws Exception {
+        List<String> request = JSON.parseArray(TradeTestData.WATCH_003_1_FOR_50, String.class);
+        Response<CheckOutResult> response = tradeService.checkout(request);
+        Assert.assertNotNull(response);
+        Assert.assertNotNull(response.getData());
+        Assert.assertEquals(ResponseCode.SUCCESS.getCode(), response.getCode());
+        Assert.assertEquals(BigDecimal.valueOf(50), response.getData().getPrice());
+    }
+
+    @Test
+    public void watch_003_4_for_200() throws Exception {
+        List<String> request = JSON.parseArray(TradeTestData.WATCH_003_4_FOR_200, String.class);
+        Response<CheckOutResult> response = tradeService.checkout(request);
+        Assert.assertNotNull(response);
+        Assert.assertNotNull(response.getData());
+        Assert.assertEquals(ResponseCode.SUCCESS.getCode(), response.getCode());
+        Assert.assertEquals(BigDecimal.valueOf(200), response.getData().getPrice());
+    }
+
+    @Test
+    public void watch_004_1_for_30() throws Exception {
+        List<String> request = JSON.parseArray(TradeTestData.WATCH_004_1_FOR_30, String.class);
+        Response<CheckOutResult> response = tradeService.checkout(request);
+        Assert.assertNotNull(response);
+        Assert.assertNotNull(response.getData());
+        Assert.assertEquals(ResponseCode.SUCCESS.getCode(), response.getCode());
+        Assert.assertEquals(BigDecimal.valueOf(30), response.getData().getPrice());
+    }
+
+    @Test
+    public void watch_004_10_for_300() throws Exception {
+        List<String> request = JSON.parseArray(TradeTestData.WATCH_004_10_FOR_300, String.class);
+        Response<CheckOutResult> response = tradeService.checkout(request);
+        Assert.assertNotNull(response);
+        Assert.assertNotNull(response.getData());
+        Assert.assertEquals(ResponseCode.SUCCESS.getCode(), response.getCode());
+        Assert.assertEquals(BigDecimal.valueOf(300), response.getData().getPrice());
     }
 }

@@ -11,6 +11,10 @@ class TradeTestData {
     static final String WATCH_002_3_TOTAL_200 = "[\"002\",\"002\",\"002\"]";
     static final String MULTIPLE_CATEGORY_NO_DISCOUNT_TOTAL_330 = "[\"001\",\"002\",\"001\",\"003\"]";
     static final String MULTIPLE_CATEGORY_DISCOUNT_TOTAL_320 = "[\"002\",\"001\",\"002\",\"001\",\"001\"]";
+    static final String WATCH_003_1_FOR_50 = "[\"003\"]";
+    static final String WATCH_003_4_FOR_200 = "[\"003\",\"003\",\"003\",\"003\"]";
+    static final String WATCH_004_1_FOR_30 = "[\"004\"]";
+    static final String WATCH_004_10_FOR_300 = "[\"004\",\"004\",\"004\",\"004\",\"004\",\"004\",\"004\",\"004\",\"004\",\"004\"]";
 
     // negative cases
     static final String EMPTY_LIST_TOTAL_0 = "[]";

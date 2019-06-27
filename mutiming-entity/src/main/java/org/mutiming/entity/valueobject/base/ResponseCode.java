@@ -15,8 +15,8 @@ public enum ResponseCode {
 
     WRONG_PARAMETER(1000, "Wrong Parameter"),
     NO_WATCH_PRICE_LIST(1001, "No price list for watch"),
-    NO_WATCH_PRICE(1002, "No price for watch id: ");
-
+    NO_WATCH_PRICE(1002, "No price for watch id: "),
+    EXCEED_MAX_SIZE(1003, "Exceed the max size of: ");
 
     private int code;
     private String message;

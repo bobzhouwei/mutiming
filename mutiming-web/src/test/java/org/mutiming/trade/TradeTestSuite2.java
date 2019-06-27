@@ -16,6 +16,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Trade checkout service test suite 2 - negative cases to check the error handling
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TradeTestSuite2 {
@@ -102,4 +105,14 @@ public class TradeTestSuite2 {
         Assert.assertEquals(ResponseCode.NO_WATCH_PRICE.getCode(), response.getCode());
     }
 
+    @Test
+    public void exceed_max_size() throws Exception {
+        List<String> request = new ArrayList<>();
+        for (int i = 0; i < 100000001; i++) {
+            request.add("001");
+        }
+        Response<CheckOutResult> response = tradeService.checkout(request);
+        Assert.assertNotNull(response);
+        Assert.assertEquals(ResponseCode.EXCEED_MAX_SIZE.getCode(), response.getCode());
+    }
 }
