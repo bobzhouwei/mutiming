@@ -16,6 +16,11 @@ class TradeTestData {
     static final String WATCH_004_1_FOR_30 = "[\"004\"]";
     static final String WATCH_004_10_FOR_300 = "[\"004\",\"004\",\"004\",\"004\",\"004\",\"004\",\"004\",\"004\",\"004\",\"004\"]";
 
+    // id with redundant spaces
+    static final String SPACE_BEFORE_WATCH_002_1_FOR_80 = "[\" 002\"]";
+    static final String SPACE_AFTER_WATCH_002_1_FOR_80 = "[\"002 \"]";
+    static final String SPACE_BEFORE_AND_AFTER_WATCH_002_1_FOR_80 = "[\" 002 \"]";
+
     // negative cases
     static final String EMPTY_LIST_TOTAL_0 = "[]";
     static final String EMPTY_ID_TOTAL_0 = "[\"\"]";

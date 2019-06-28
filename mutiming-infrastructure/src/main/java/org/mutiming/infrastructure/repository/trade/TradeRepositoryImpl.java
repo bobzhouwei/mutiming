@@ -64,6 +64,7 @@ public class TradeRepositoryImpl implements TradeRepository {
             if (StringUtils.isEmpty(itemId) || StringUtils.isEmpty(itemId.trim())) {
                 continue;
             }
+            itemId = itemId.trim();
             if (itemMap.containsKey(itemId)) {
                 itemMap.put(itemId, itemMap.get(itemId).add(BigDecimal.ONE));
             } else {
