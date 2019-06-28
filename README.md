@@ -12,18 +12,14 @@ This service provides thr APIs for supporting MuTiming Online Trading.
 You can download the source zip or clone it from the github (https://github.com/bobzhouwei/MuTiming)
 
 #### Step 2: Package it
-   
-    mvn clean package
-        
- - Please make sure you have the maven installed. If not, download maven via (http://maven.apache.org/download.cgi) 
-and follow the instructions to make sure maven be installed properly.
+- Run "mvn clean package" 
+(Make sure you have the maven installed. If not, download maven via (http://maven.apache.org/download.cgi) 
+and follow the instructions to make sure maven be installed properly.)
 - After that, you can get the "mutiming-web.jar" under "mutiming-web\target" folder
 
 #### Step 3: Deploy it
-
-    java -jar mutiming-web.jar
-
-- Please make sure you have the JDK 8 installed. If not, download via https://www.oracle.com/technetwork/java/javase/downloads/index.html 
+- Run "java -jar mutiming-web.jar" 
+(Make sure you have the JDK 8 installed. If not, download via https://www.oracle.com/technetwork/java/javase/downloads/index.html 
 and follow the instructions to install and configure it.)
 - After that, you should see the SpringBoot welcome screen and Application started prompt, that means the application deployed successfully.
 (If not, please contact me via: bobo_shu888@hotmail.com)
@@ -47,12 +43,9 @@ You can see the result at the Response boy.
         - mutiming-entity   // define the models like domain objects and value objects. You can also put persistant object, constants/enums here.
         - mutiming-infrastructure   // the infrastructure layer, do implement the interfaces defined in domain layer.
         - mutiming-web      // the application entry point
-            - src
-                - main/java/org/mutiming
-                    - configuration // put log/authentication/cache/async configurations and other configurations like Swagger/ThreadPool config here
-                    - log           // customized the log output for each service.Log contaisn: uri/interval/requestHead/requestBody/responseHead/responseBody, which provides clear information and help the debug/monitor.
-                    - controller    // the controllers
-                - test              // the unit test code
+            - configuration // put log/authentication/cache/async configurations and other configurations like Swagger/ThreadPool config here
+                - log       // customized the log output for each service.Log contaisn: uri/interval/requestHead/requestBody/responseHead/responseBody, which provides clear information and help the debug/monitor.
+            - controller    // the controllers
 
 ## The approaches and further improvements
 #### Approaches
