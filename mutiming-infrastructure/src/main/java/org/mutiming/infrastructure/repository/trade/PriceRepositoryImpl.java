@@ -29,7 +29,11 @@ public class PriceRepositoryImpl implements PriceRepository {
         this.priceInfoConfig = priceInfoConfig;
     }
 
-
+    /**
+     * Get the watch price list
+     *
+     * @return List of watch prices
+     */
     @Override
     public List<ItemPriceInfo> getWatchPriceList() {
         if (watchItemPriceList != null) {

@@ -106,6 +106,14 @@ public class TradeTestSuite2 {
     }
 
     @Test
+    public void id_not_found_space_ithe_middle() throws Exception {
+        List<String> request = JSON.parseArray(TradeTestData.ID_NOT_FOUND_SPACE_ITHE_MIDDLE, String.class);
+        Response<CheckOutResult> response = tradeService.checkout(request);
+        Assert.assertNotNull(response);
+        Assert.assertEquals(ResponseCode.NO_WATCH_PRICE.getCode(), response.getCode());
+    }
+
+    @Test
     public void exceed_max_size() throws Exception {
         List<String> request = new ArrayList<>();
         for (int i = 0; i < 100000001; i++) {

@@ -58,7 +58,8 @@ You can see the result at the Response boy.
 - If the watch price list is empty or something wrong, the response returns error code and error messages to figure out the issue, not just returns ZERO.
 - If any of the purchasing watch Id is not listed in the watch sale list, the response will also returns error code and error messages. I think at this situation, returns error code and error messages is reasonable for a e-trading system. The trade should not be proceeded if an item has no price, instead of just skip or ignore it which could cause major issues.
 - I made a max item quantity check, currently set to 100000000 which should be a reasonable size for the business, to prevent the overflow and response issues.
-- I added a trim operation on each of the item id, to make the 'checkout' api tolerate redundant spaces. 
+- I added a trim operation on each of the item id, to make the 'checkout' api tolerate redundant spaces before and after (e.g. ' 001', '001 '.' 001 ' will be regarded as '001'). 
+The space inside the id will not be trimmed out e.g. '00 1' will NOT be regarded as '001'). 
 #### Further improvements
 - Put the configuration (like the price list, and max item quantity) to an online configuration platform (like Apollo, Nacos, etc.) to make it easy to be maintenance and be updated.
 - Put the price list onto a database is another way to enable it persistence and able to interact with other module/system. A cache (like Redis) need to be applied to handle the query of price list. The cache should be updated regularly or right after any changes in to database.

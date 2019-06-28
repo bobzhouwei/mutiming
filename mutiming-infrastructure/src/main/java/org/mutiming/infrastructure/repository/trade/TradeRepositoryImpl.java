@@ -34,6 +34,24 @@ public class TradeRepositoryImpl implements TradeRepository {
     @Autowired
     private PriceService priceService;
 
+    /**
+     * Function:
+     * - Input a list of watch Ids, give the total price.
+     * <p>
+     * Notes:
+     * - List length can not exceed 100000000
+     * - Spaces before or after id will be ignored.
+     * - For example: id like ' 001', '001 '.' 001 ' will be regarded as '001';id like '00 1' will NOT be regarded as '001'
+     * <p>
+     * Error Code:
+     * - 1000: Wrong Parameter
+     * - 1001: Price list not exist
+     * - 1002: No price for the input watch id
+     * - 1003: Input list size exceeds the max value
+     *
+     * @param request purchasing item list
+     * @return total price of the purchasing items or error info
+     */
     @Override
     @SuppressWarnings("unchecked")
     public Response<CheckOutResult> checkout(List<String> request) {

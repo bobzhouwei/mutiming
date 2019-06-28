@@ -29,5 +29,6 @@ class TradeTestData {
     static final String ID_NOT_FOUND_2 = "[\"002\",\"001\",\"1\",\"001\"]";
     static final String ID_NOT_FOUND_3 = "[\"002\",\"02\"]";
     static final String ID_NOT_FOUND_4 = "[\"005\",\"001\"]";
+    static final String ID_NOT_FOUND_SPACE_ITHE_MIDDLE = "[\"00 1\"]";
 
 }
